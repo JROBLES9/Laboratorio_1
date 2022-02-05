@@ -23,11 +23,31 @@ namespace Laboratorio_1
 
         public void normalizarNombre()
         {
-            //Nombre
+            String result;
+            //Elimina espacios
             Nombre = Nombre.Trim();
+            Apellido = Apellido.Trim();
 
 
-            //Apellido
+            //Elimina simbolos q no sean letras
+            result = Nombre;
+            for(int i = 0; i < Nombre.Length; i++)
+            {
+                if (!char.IsLetter(Nombre[i]) & !char.IsWhiteSpace(Nombre[i]))
+                   result = Nombre.Remove(i,1);
+            }
+            Nombre = result;
+           
+            result = Apellido;
+            for (int i = 0; i < Apellido.Length; i++)
+            {
+                if (!char.IsLetter(Apellido[i]) & !char.IsWhiteSpace(Apellido[i]))
+                    result = Apellido.Remove(i, 1);
+            }
+            Apellido = result;
+
+            Nombre = System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(Nombre);
+            Apellido = System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(Apellido);
         }
     }
 }
